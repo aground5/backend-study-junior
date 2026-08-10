@@ -1,6 +1,8 @@
 package com.gdgku.study.backend.controller;
 
-import com.gdgku.study.backend.model.Memo;
+import com.gdgku.study.backend.dto.MemoCreateRequest;
+import com.gdgku.study.backend.dto.MemoResponse;
+import com.gdgku.study.backend.dto.MemoUpdateRequest;
 import com.gdgku.study.backend.service.MemoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,22 +19,22 @@ public class MemoController {
     }
 
     @PostMapping
-    public Memo createMemo(@RequestBody Memo memo) {
-        return memoService.createMemo(memo);
+    public MemoResponse createMemo(@RequestBody MemoCreateRequest request) {
+        return memoService.createMemo(request);
     }
 
     @GetMapping
-    public List<Memo> getAllMemos() {
+    public List<MemoResponse> getAllMemos() {
         return memoService.getAllMemos();
     }
 
     @GetMapping("/{id}")
-    public Memo getMemoById(@PathVariable Long id) {
+    public MemoResponse getMemoById(@PathVariable Long id) {
         return memoService.getMemoById(id);
     }
 
     @PutMapping("/{id}")
-    public Memo updateMemo(@PathVariable Long id, @RequestBody Memo request) {
+    public MemoResponse updateMemo(@PathVariable Long id, @RequestBody MemoUpdateRequest request) {
         return memoService.updateMemo(id, request);
     }
 
