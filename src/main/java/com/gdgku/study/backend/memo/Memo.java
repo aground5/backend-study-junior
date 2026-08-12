@@ -1,14 +1,24 @@
-package com.gdgku.study.backend.dto;
+package com.gdgku.study.backend.memo;
 
-public class MemoUpdateRequest {
+public class Memo {
+    private Long id;
     private String title;
     private String content;
 
-    public MemoUpdateRequest() {}
+    public Memo() {}
 
-    public MemoUpdateRequest(String title, String content) {
+    public Memo(Long id, String title, String content) {
+        this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

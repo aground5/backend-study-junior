@@ -1,9 +1,8 @@
-package com.gdgku.study.backend.service;
+package com.gdgku.study.backend.memo;
 
-import com.gdgku.study.backend.dto.MemoCreateRequest;
-import com.gdgku.study.backend.dto.MemoResponse;
-import com.gdgku.study.backend.dto.MemoUpdateRequest;
-import com.gdgku.study.backend.model.Memo;
+import com.gdgku.study.backend.memo.dto.MemoCreateRequest;
+import com.gdgku.study.backend.memo.dto.MemoResponse;
+import com.gdgku.study.backend.memo.dto.MemoUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

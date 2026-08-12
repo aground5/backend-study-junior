@@ -1,4 +1,4 @@
-package com.gdgku.study.backend.model;
+package com.gdgku.study.backend.user;
 
 public class User {
     private Long id;

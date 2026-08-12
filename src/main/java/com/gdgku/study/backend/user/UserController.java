@@ -1,6 +1,5 @@
-package com.gdgku.study.backend.controller;
+package com.gdgku.study.backend.user;
 
-import com.gdgku.study.backend.model.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package com.gdgku.study.backend.dto;
+package com.gdgku.study.backend.memo.dto;
 
-import com.gdgku.study.backend.model.Memo;
+import com.gdgku.study.backend.memo.Memo;
 
 public class MemoResponse {
     private Long id;

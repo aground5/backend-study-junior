@@ -1,12 +1,12 @@
-package com.gdgku.study.backend.dto;
+package com.gdgku.study.backend.memo.dto;
 
-public class MemoCreateRequest {
+public class MemoUpdateRequest {
     private String title;
     private String content;
 
-    public MemoCreateRequest() {}
+    public MemoUpdateRequest() {}
 
-    public MemoCreateRequest(String title, String content) {
+    public MemoUpdateRequest(String title, String content) {
         this.title = title;
         this.content = content;
     }
