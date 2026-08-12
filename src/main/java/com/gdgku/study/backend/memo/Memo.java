@@ -1,11 +1,24 @@
 package com.gdgku.study.backend.memo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "memos")
 public class Memo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String content;
 
     public Memo() {}
+
+    public Memo(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     public Memo(Long id, String title, String content) {
         this.id = id;
@@ -13,12 +26,13 @@ public class Memo {
         this.content = content;
     }
 
-    public Long getId() {
-        return id;
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {

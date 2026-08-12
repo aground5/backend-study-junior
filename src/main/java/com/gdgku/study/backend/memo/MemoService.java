@@ -4,50 +4,52 @@ import com.gdgku.study.backend.memo.dto.MemoCreateRequest;
 import com.gdgku.study.backend.memo.dto.MemoResponse;
 import com.gdgku.study.backend.memo.dto.MemoUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class MemoService {
 
-    private final List<Memo> memoList = new ArrayList<>();
-    private long nextId = 1L;
+    private final MemoRepository memoRepository;
 
+    public MemoService(MemoRepository memoRepository) {
+        this.memoRepository = memoRepository;
+    }
+
+    @Transactional
     public MemoResponse createMemo(MemoCreateRequest request) {
-        Memo memo = new Memo(nextId++, request.getTitle(), request.getContent());
-        memoList.add(memo);
-        return MemoResponse.from(memo);
+        Memo memo = new Memo(request.getTitle(), request.getContent());
+        Memo savedMemo = memoRepository.save(memo);
+        return MemoResponse.from(savedMemo);
     }
 
     public List<MemoResponse> getAllMemos() {
-        return memoList.stream()
+        return memoRepository.findAll().stream()
                 .map(MemoResponse::from)
                 .collect(Collectors.toList());
     }
 
     public MemoResponse getMemoById(Long id) {
-        for (Memo m : memoList) {
-            if (m.getId().equals(id)) {
-                return MemoResponse.from(m);
-            }
-        }
-        return null;
+        Memo memo = memoRepository.findById(id).orElse(null);
+        return memo != null ? MemoResponse.from(memo) : null;
     }
 
+    @Transactional
     public MemoResponse updateMemo(Long id, MemoUpdateRequest request) {
-        for (Memo m : memoList) {
-            if (m.getId().equals(id)) {
-                m.setTitle(request.getTitle());
-                m.setContent(request.getContent());
-                return MemoResponse.from(m);
-            }
+        Memo memo = memoRepository.findById(id).orElse(null);
+        if (memo != null) {
+            memo.update(request.getTitle(), request.getContent());
+            Memo updatedMemo = memoRepository.save(memo);
+            return MemoResponse.from(updatedMemo);
         }
         return null;
     }
 
+    @Transactional
     public void deleteMemo(Long id) {
-        memoList.removeIf(m -> m.getId().equals(id));
+        memoRepository.deleteById(id);
     }
 }

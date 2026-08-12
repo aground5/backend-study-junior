@@ -2,36 +2,31 @@ package com.gdgku.study.backend.user;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    private final List<User> userList = new ArrayList<>();
-    private long nextId = 1L;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        user.setId(nextId++);
-        userList.add(user);
-        return user;
+        return userService.createUser(user);
     }
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userList;
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        for (User u : userList) {
-            if (u.getId().equals(id)) {
-                return u;
-            }
-        }
-        return null;
+        return userService.getUserById(id);
     }
 
     @GetMapping("/param")
