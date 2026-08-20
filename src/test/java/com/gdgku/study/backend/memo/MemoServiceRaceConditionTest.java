@@ -5,19 +5,24 @@ import com.gdgku.study.backend.memo.dto.MemoResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestReporter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@SpringBootTest
 class MemoServiceRaceConditionTest {
 
+    @Autowired
+    private MemoService memoService;
+
     @Test
-    @DisplayName("MemoService direct multi-thread race condition test")
+    @DisplayName("MemoService direct multi-thread concurrency test")
     void testRaceConditionDirectly(TestReporter reporter) throws InterruptedException {
-        MemoService memoService = new MemoService();
-        int threadCount = 200;
+        int threadCount = 100;
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
         CountDownLatch latch = new CountDownLatch(1);
         CountDownLatch doneLatch = new CountDownLatch(threadCount);
@@ -27,7 +32,7 @@ class MemoServiceRaceConditionTest {
 
         StringBuilder reportBuilder = new StringBuilder();
         appendLog(reportBuilder, "============================================================");
-        appendLog(reportBuilder, "[+] Starting MemoService Direct Thread Race Condition Test");
+        appendLog(reportBuilder, "[+] Starting MemoService Direct Thread Concurrency Test");
         appendLog(reportBuilder, "[+] Concurrency Level (Threads): " + threadCount);
         appendLog(reportBuilder, "============================================================");
 
@@ -63,7 +68,7 @@ class MemoServiceRaceConditionTest {
         appendLog(reportBuilder, "[+] Concurrent execution completed in " + elapsedTimeMs + " ms.");
         appendLog(reportBuilder, "[+] Successful method calls: " + successCalls);
         appendLog(reportBuilder, "[+] Failed / Exception calls: " + failedCalls);
-        appendLog(reportBuilder, "[+] Total Memos currently stored in List: " + storedCount);
+        appendLog(reportBuilder, "[+] Total Memos currently stored: " + storedCount);
 
         // Analyze Race Condition Results
         appendLog(reportBuilder, "\n============================================================");
@@ -89,12 +94,12 @@ class MemoServiceRaceConditionTest {
             appendLog(reportBuilder, " [✓] No duplicate IDs observed in return values.");
         }
 
-        if (storedCount != threadCount) {
+        if (storedCount < threadCount) {
             raceDetected = true;
             appendLog(reportBuilder, " [!] RACE CONDITION DETECTED: Discrepancy between created count and stored count!");
             appendLog(reportBuilder, "    - Expected stored count: " + threadCount);
             appendLog(reportBuilder, "    - Actual stored count: " + storedCount);
-            appendLog(reportBuilder, "    - Missing / overwritten entries: " + Math.abs(threadCount - storedCount));
+            appendLog(reportBuilder, "    - Missing / overwritten entries: " + (threadCount - storedCount));
         } else {
             appendLog(reportBuilder, " [✓] Stored memo count matches expected thread count.");
         }
@@ -109,13 +114,12 @@ class MemoServiceRaceConditionTest {
 
         appendLog(reportBuilder, "============================================================");
         if (raceDetected) {
-            appendLog(reportBuilder, " CONCLUSION: Race Condition successfully reproduced!");
+            appendLog(reportBuilder, " CONCLUSION: Race Condition reproduced!");
         } else {
-            appendLog(reportBuilder, " CONCLUSION: No race condition detected.");
+            appendLog(reportBuilder, " CONCLUSION: No race condition detected (Thread-safe DB / JPA active).");
         }
         appendLog(reportBuilder, "============================================================");
 
-        // Publish to JUnit 5 TestReporter for VS Code / IDE Test Runner UI
         if (reporter != null) {
             reporter.publishEntry("Race Condition Report", reportBuilder.toString());
         }

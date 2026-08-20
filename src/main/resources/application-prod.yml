@@ -1,0 +1,26 @@
+spring:
+  web:
+    error:
+      include-stacktrace: never
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/proddb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    driver-class-name: org.h2.Driver
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    "[com.gdgku.study.backend]": INFO
+
+

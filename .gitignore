@@ -48,3 +48,9 @@ out/
 
 ### macOS ###
 .DS_Store
+
+# H2 Database & Local Data
+*.mv.db
+*.trace.db
+data/
+

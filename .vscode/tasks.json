@@ -2,40 +2,66 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "\ud83d\ude80 Spring Boot \uc11c\ubc84 \uc2e4\ud589",
+      "label": "🐛 Spring Boot 서버 실행 (Local Profile)",
       "type": "shell",
-      "command": "./gradlew bootRun",
+      "command": "./gradlew bootRun --args='--spring.profiles.active=local'",
       "problemMatcher": [],
       "options": {
         "statusbar": {
-          "label": "$(play) Boot Run",
-          "tooltip": "Spring Boot \uc11c\ubc84 \uc2e4\ud589 (./gradlew bootRun)",
+          "label": "$(bug) Run Local (Debug)",
+          "tooltip": "Spring Boot Local Debug Profile 실행",
           "color": "#4CAF50"
         }
       }
     },
     {
-      "label": "\ud83e\uddea \uc804\uccb4 \ud14c\uc2a4\ud2b8 \uc2e4\ud589",
+      "label": "🚀 Spring Boot 서버 실행 (Prod Profile)",
+      "type": "shell",
+      "command": "./gradlew bootRun --args='--spring.profiles.active=prod'",
+      "problemMatcher": [],
+      "options": {
+        "statusbar": {
+          "label": "$(rocket) Run Prod (Release)",
+          "tooltip": "Spring Boot Prod Release Profile 실행",
+          "color": "#E91E63"
+        }
+      }
+    },
+    {
+      "label": "📦 Release JAR 빌드",
+      "type": "shell",
+      "command": "./gradlew build",
+      "problemMatcher": [],
+      "options": {
+        "statusbar": {
+          "label": "$(package) Build Release Jar",
+          "tooltip": "Spring Boot Release Jar 빌드 (./gradlew build)",
+          "color": "#9C27B0"
+        }
+      }
+    },
+    {
+      "label": "🧪 전체 테스트 실행",
       "type": "shell",
       "command": "./gradlew test",
       "problemMatcher": [],
       "options": {
         "statusbar": {
           "label": "$(beaker) Run Tests",
-          "tooltip": "\uc804\uccb4 \ub2e8\uc704 \ud14c\uc2a4\ud2b8 \uc2e4\ud589 (./gradlew test)",
+          "tooltip": "전체 단위 테스트 실행 (./gradlew test)",
           "color": "#FF9800"
         }
       }
     },
     {
-      "label": "\ud83d\udee1\ufe0f CycloneDX SBOM \ucd94\ucd9c",
+      "label": "🛡️ CycloneDX SBOM 추출",
       "type": "shell",
       "command": "./gradlew cyclonedxBom",
       "problemMatcher": [],
       "options": {
         "statusbar": {
           "label": "$(shield) Generate SBOM",
-          "tooltip": "CycloneDX SBOM \ucd94\ucd9c (./gradlew cyclonedxBom)",
+          "tooltip": "CycloneDX SBOM 추출 (./gradlew cyclonedxBom)",
           "color": "#2196F3"
         }
       }
