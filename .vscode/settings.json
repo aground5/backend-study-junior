@@ -1,3 +1,13 @@
-{
-    "java.compile.nullAnalysis.mode": "automatic"
+{  
+    "java.compile.nullAnalysis.mode": "automatic",  
+    "java.configuration.runtimes": [  
+    {  
+        "name": "JavaSE-17",  
+        "path": "C:\\jdk-17.0.0.1",  
+        "default": true  
+    },  
+    ],  
+    "terminal.integrated.env.windows": {  
+        "PATH": "${env:PATH};C:\\jdk-17.0.0.1\\bin"  
+    }  
 }
