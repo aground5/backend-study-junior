@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 할 일: Bean Validation(@NotBlank, @Positive 등)과 Service의 비즈니스 규칙 검증을 추가해서
  * 정원 초과/중복 신청/빈 값이 4xx로 거부되도록 고치자.
  */
+
 @RestController
 @RequestMapping("/courses")
 public class CourseController {
