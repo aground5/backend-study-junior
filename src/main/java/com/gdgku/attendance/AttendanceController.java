@@ -28,6 +28,8 @@ import java.util.List;
 @RequestMapping("/attendance")
 public class AttendanceController {
 
+    private final AttendanceService attendanceService = new AttendanceService();
+    
     private static final LocalTime LATE_CUTOFF = LocalTime.of(9, 10);
     private static final LocalTime ABSENT_CUTOFF = LocalTime.of(9, 30);
 
@@ -85,14 +87,7 @@ public class AttendanceController {
 
     @PostMapping("/check-in")
     public Attendance checkIn(@RequestBody Attendance request) {
-        String status;
-        if (!request.getCheckInTime().isAfter(LATE_CUTOFF)) {
-            status = "ON_TIME";
-        } else if (!request.getCheckInTime().isAfter(ABSENT_CUTOFF)) {
-            status = "LATE";
-        } else {
-            status = "ABSENT";
-        }
+        String status = attendanceService.determineStatus(request.getCheckInTime());
 
         Attendance attendance = new Attendance(nextId++, request.getStudentName(), request.getCheckInTime(), status);
         attendances.add(attendance);
@@ -136,14 +131,7 @@ public class AttendanceController {
 
         attendance.setCheckInTime(request.getCheckInTime());
 
-        String status;
-        if (request.getCheckInTime().isBefore(LATE_CUTOFF)) {
-            status = "ON_TIME";
-        } else if (request.getCheckInTime().isBefore(ABSENT_CUTOFF)) {
-            status = "LATE";
-        } else {
-            status = "ABSENT";
-        }
+        String status = attendanceService.determineStatus(request.getCheckInTime());
         attendance.setStatus(status);
 
         return attendance;
