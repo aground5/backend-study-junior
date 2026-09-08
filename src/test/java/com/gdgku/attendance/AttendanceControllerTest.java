@@ -1,6 +1,6 @@
 package com.gdgku.attendance;
 
-import com.gdgku.attendance.AttendanceController.Attendance;
+// import com.gdgku.attendance.AttendanceController.Attendance; 위 패키지 코드가 알아서
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.TestRestTemplate;
