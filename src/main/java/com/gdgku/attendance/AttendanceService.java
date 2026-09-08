@@ -15,7 +15,7 @@ public class AttendanceService {
     private long nextId = 1L;
 
     // 공통 로직으로 전환
-    public String determineStatus(LocalTime checkInTime) {
+    public static String determineStatus(LocalTime checkInTime) {
         if (!checkInTime.isAfter(LATE_CUTOFF)) {
             return "ON_TIME";
         } else if (!checkInTime.isAfter(ABSENT_CUTOFF)) {
