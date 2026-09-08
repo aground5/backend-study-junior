@@ -1,4 +1,3 @@
-
 package com.gdgku.study.backend;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello, Spring!";
+        return "Hello, Server!";
     }
 }
