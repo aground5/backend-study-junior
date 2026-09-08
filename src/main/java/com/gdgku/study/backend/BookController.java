@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/books") // 모든 메서드의 공통 URI 경로 prefix
+@RequestMapping("/legacy-books") // com.gdgku.library.LibraryController와 경로가 겹쳐 /books에서 변경
 public class BookController {
 
     // DB 대신 사용할 임시 메모리 저장소
