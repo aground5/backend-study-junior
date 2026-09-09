@@ -26,14 +26,10 @@ public class AttendanceService {
     }
 
     public Attendance checkIn(Attendance request) {
-        String status=determineStatus(request.getCheckInTime());
+        String status = determineStatus(request.getCheckInTime());
         Attendance attendance = new Attendance(nextId++, request.getStudentName(), request.getCheckInTime(), status);
         attendances.add(attendance);
         return attendance;
-    }
-
-    public List<Attendance> getAttendances() {
-        return attendances;
     }
 
     public Attendance getAttendance(Long id) {
@@ -44,6 +40,12 @@ public class AttendanceService {
         }
         return null;
     }
+
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+
+
 
     public long countLate() {
         long count = 0;
