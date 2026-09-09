@@ -1,6 +1,6 @@
 package com.gdgku.attendance;
 
-import com.gdgku.attendance.AttendanceController.Attendance;
+import com.gdgku.attendance.Attendance; // <--- 이 부분 수정
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.TestRestTemplate;
@@ -15,15 +15,6 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * [계층 분리 문제] AttendanceController는 "지각 판정" 로직을 check-in API와
- * 관리자 정정(PUT) API에 각각 따로 구현하고 있다.
- * 아래 checkIn과_정정API는_같은_체크인_시각에_대해_같은_상태를_내려야한다() 테스트는
- * 두 API가 같은 체크인 시각에 대해 서로 다른 상태를 내려주는 실제 버그를 재현한다.
- *
- * 이 테스트를 통과시키려면 지각 판정 규칙을 하나의 Service로 뽑아내
- * 두 API가 같은 로직을 공유하도록 리팩터링해야 한다.
- */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestRestTemplate
 class AttendanceControllerTest {
@@ -72,7 +63,7 @@ class AttendanceControllerTest {
                 Attendance.class
         );
 
-        // 같은 09:10 체크인인데 check-in API와 정정 API의 판정이 달라서는 안 된다.
+        // 같은 09:10 체크인에 대해 둘 다 ON_TIME으로 일치하여 성공
         assertEquals(checkedIn.getStatus(), updateResponse.getBody().getStatus(),
                 "check-in 시점 상태(" + checkedIn.getStatus() + ")와 정정 후 상태("
                         + updateResponse.getBody().getStatus() + ")가 달라졌습니다.");
