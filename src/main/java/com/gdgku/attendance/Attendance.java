@@ -9,7 +9,8 @@ public class Attendance {
     private String status;
 
     public Attendance() {
-    }
+    }  
+    
 
     public Attendance(Long id, String studentName, LocalTime checkInTime, String status) {
         this.id = id;
@@ -34,13 +35,14 @@ public class Attendance {
         this.studentName = studentName;
     }
 
+    public void setCheckInTime(LocalTime checkInTime) {
+        this.checkInTime = checkInTime;
+    }
+
     public LocalTime getCheckInTime() {
         return checkInTime;
     }
 
-    public void setCheckInTime(LocalTime checkInTime) {
-        this.checkInTime = checkInTime;
-    }
 
     public String getStatus() {
         return status;
