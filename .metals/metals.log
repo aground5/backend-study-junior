@@ -1,0 +1,14 @@
+2026.09.15 17:46:47 INFO  Started: Metals version 1.6.9 in folders '/Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior' for client Visual Studio Code 1.116.0.
+2026.09.15 17:46:47 INFO  Memory monitor started
+2026.09.15 17:46:47 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.09.15 17:46:48 INFO  no build target found for /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Using fallback presentation compiler.
+2026.09.15 17:46:51 WARN  no build target for: /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java
+2026.09.15 17:46:51 WARN  Running javac-semanticdb failed for file:///Users/jcwoo1204/Desktop/GDG/BE%20junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Output:
+
+2026.09.15 17:46:58 INFO  no build target found for /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Using fallback presentation compiler.
+2026.09.15 17:46:58 WARN  no build target for: /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java
+2026.09.15 17:46:58 INFO  no build target found for /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Using fallback presentation compiler.
+2026.09.15 17:50:13 INFO  no build target found for /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Using fallback presentation compiler.
+9월 15, 2026 5:51:32 오후 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+정보: Unsupported notification method: $/setTrace
+2026.09.15 17:53:41 INFO  no build target found for /Users/jcwoo1204/Desktop/GDG/BE junior/backend-study-junior/src/main/java/com/gdgku/study/backend/Gamecontroller.java. Using fallback presentation compiler.
