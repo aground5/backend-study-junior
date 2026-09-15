@@ -17,6 +17,13 @@
     },
     {
       "type": "java",
+      "name": "BackendApplication",
+      "request": "launch",
+      "mainClass": "com.gdgku.study.backend.BackendApplication",
+      "projectName": "backend-backend-study-junior"
+    },
+    {
+      "type": "java",
       "name": "🚀 Spring Boot 서버 실행",
       "request": "launch",
       "mainClass": "com.gdgku.study.backend.BackendApplication",
