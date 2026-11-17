@@ -21,9 +21,11 @@ import java.util.List;
  *
  * 할 일: 지각 판정 로직을 AttendanceService(순수 자바 클래스)로 뽑아내 단일 진실 공급원으로 만들고,
  * Controller는 요청을 받아 Service를 호출하기만 하도록 리팩터링해서 테스트를 통과시키자.
+ * 
+ * -> 파일을 세 개로 나누면서 해결
  */
 @RestController
-@RequestMapping("/attendance")
+@RequestMapping("/attendance") //AttendenceController는 요청받기/응답하기 역할만 함.
 public class AttendanceController {
 
     private final AttendanceService attendanceService;
@@ -52,8 +54,7 @@ public class AttendanceController {
         return attendanceService.countLate();
     }
 
-    // 관리자가 잘못 입력된 출석 시각을 정정하는 API.
-    // 지각 판정 로직을 checkIn()과 별개로 다시 구현하다가 경계값 조건(<= vs <)이 미묘하게 달라졌다.
+    // 관리자가 잘못 입력된 출석 시각을 정정하는 API. 판정은 checkIn과 같은 Service 로직을 사용한다.
     @PutMapping("/{id}")
     public Attendance updateCheckInTime(@PathVariable Long id, @RequestBody Attendance request) {
         return attendanceService.updateCheckInTime(id, request);

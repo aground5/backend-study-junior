@@ -6,8 +6,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * [Service] 출석 관련 비즈니스 로직과 데이터 저장을 담당한다.
+ */
 @Service
 public class AttendanceService {
+    /**
+     * 체크인 시각으로 출석 상태를 판정
+     * 판정 규칙이 이 메서드 한 곳에만 있다
+     */
     private static final LocalTime LATE_CUTOFF = LocalTime.of(9, 10);
     private static final LocalTime ABSENT_CUTOFF = LocalTime.of(9, 30);
 
@@ -15,7 +22,7 @@ public class AttendanceService {
     private long nextId = 1L;
 
     public static String determineStatus(LocalTime checkInTime) {
-        if (!checkInTime.isAfter(LATE_CUTOFF)) {
+        if (!checkInTime.isAfter(LATE_CUTOFF)) { // 09:10은 포함
             return "ON_TIME";
         } else if (!checkInTime.isAfter(ABSENT_CUTOFF)) {
             return "LATE";
